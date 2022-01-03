@@ -1,3 +1,4 @@
+import 'package:day1/Screens/methods.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -10,7 +11,7 @@ class HomePage extends StatelessWidget {
     double pi = 3.14;
     num temp = 50.5;
     var data = "hello how are you";
-
+    studentsMethod();
     return Scaffold(
       appBar: AppBar(
         title: const Text("day1"),
