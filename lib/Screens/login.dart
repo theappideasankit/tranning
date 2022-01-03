@@ -35,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             children: [
               Image.asset(
-                "assets/images/login.png",
+                "assets/images/welcome.png",
                 fit: BoxFit.cover,
               ),
               Text(
