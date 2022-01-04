@@ -1,9 +1,10 @@
-import 'package:day1/Screens/methods.dart';
+import 'package:day1/models/productmodel.dart';
 import 'package:day1/widgets/drawer.dart';
+import 'package:day1/widgets/products.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,27 +13,23 @@ class HomePage extends StatelessWidget {
     // double pi = 3.14;
     // num temp = 50.5;
     // var data = "hello how are you";
-    studentsMethod();
+    //  studentsMethod();
+    final newList = List.generate(25, (index) => CatalogModel.products[0]);
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "day1",
-        ),
-      ),
-      body: Column(
-        children: [
-          Container(
-            constraints: const BoxConstraints(
-                maxHeight: 200, maxWidth: 210, minHeight: 10, minWidth: 20),
-            child: Container(
-              height: 500,
-              width: 500,
-              color: Colors.blueGrey,
-            ),
+        appBar: AppBar(
+          title: const Text(
+            "day1",
           ),
-        ],
-      ),
-      drawer: const MyDrawer(),
-    );
+        ),
+        body: ListView.builder(
+          itemCount: newList.length,
+          itemBuilder: (context, index) {
+            return ProductsWidget(
+              product: newList[index],
+            );
+          },
+        ),
+        drawer: const MyDrawer());
   }
 }
