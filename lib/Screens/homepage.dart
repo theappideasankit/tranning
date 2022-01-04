@@ -1,9 +1,6 @@
 import 'dart:convert';
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:day1/models/productmodel.dart';
 import 'package:day1/widgets/drawer.dart';
 import 'package:day1/widgets/products.dart';
@@ -42,19 +39,46 @@ class _HomePageState extends State<HomePage> {
             "Tranning",
           ),
         ),
-        body:
-            (CatalogModels.products != null && CatalogModels.products.isNotEmpty)
-                ? ListView.builder(
-                    itemCount: CatalogModels.products.length,
-                    itemBuilder: (context, index) {
-                      return ProductsWidget(
-                        product: CatalogModels.products[index],
-                      );
-                    },
-                  )
-                : const Center(
-                    child: CircularProgressIndicator(),
-                  ),
+        body: (CatalogModels.products != null &&
+                CatalogModels.products.isNotEmpty)
+            ? GridView.builder(
+                itemCount: CatalogModels.products.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 15,
+                    crossAxisSpacing: 15),
+                itemBuilder: (context, index) {
+                  final products = CatalogModels.products[index];
+                  return Card(
+                      elevation: 10.0,
+                      clipBehavior: Clip.antiAlias,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      child: GridTile(
+                          header: Container(
+                              decoration: const BoxDecoration(
+                                color: Colors.blueGrey,
+                              ),
+                              padding: const EdgeInsets.all(20),
+                              child: Text(
+                                products.name,
+                                style: const TextStyle(color: Colors.white),
+                              )),
+                          footer: Container(
+                              decoration: const BoxDecoration(
+                                color: Colors.black,
+                              ),
+                              padding: const EdgeInsets.all(20),
+                              child: Text(
+                                products.price.toString(),
+                                style: const TextStyle(color: Colors.white),
+                              )),
+                          child: Image.network(products.image)));
+                },
+              )
+            : const Center(
+                child: CircularProgressIndicator(),
+              ),
         drawer: const MyDrawer());
   }
 }
