@@ -1,8 +1,9 @@
+
 import 'package:day1/models/productmodel.dart';
 import 'package:flutter/material.dart';
 
 class ProductsWidget extends StatelessWidget {
-  final ProductModel product;
+  final ProductModels product;
   const ProductsWidget({Key key, @required this.product})
       : assert(product != null),
         super(key: key);
@@ -18,7 +19,7 @@ class ProductsWidget extends StatelessWidget {
             // ignore: avoid_print
             print("pressed");
           },
-          leading: Image.network(product.urlImage),
+          leading: Image.network(product.image),
           title: Text(product.name),
           subtitle: Text(product.desc),
           trailing: Text(

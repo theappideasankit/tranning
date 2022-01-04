@@ -1,35 +1,60 @@
+import 'dart:convert';
+
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 import 'package:day1/models/productmodel.dart';
 import 'package:day1/widgets/drawer.dart';
 import 'package:day1/widgets/products.dart';
-import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    // int days = 4;
-    // String name = " Today I'm joining TheAppIdeas Company";
-    // double pi = 3.14;
-    // num temp = 50.5;
-    // var data = "hello how are you";
-    //  studentsMethod();
-    final newList = List.generate(25, (index) => CatalogModel.products[0]);
+  State<HomePage> createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  loadData() async {
+    await Future.delayed(const Duration(seconds: 3));
+    final catalogJson =
+        await rootBundle.loadString("assets/files/catalog.json");
+    final decodedData = jsonDecode(catalogJson);
+    var productsData = decodedData["products"];
+    CatalogModels.products = List.from(productsData)
+        .map<ProductModels>((item) => ProductModels.fromMap(item))
+        .toList();
+    setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: const Text(
-            "day1",
+            "Tranning",
           ),
         ),
-        body: ListView.builder(
-          itemCount: newList.length,
-          itemBuilder: (context, index) {
-            return ProductsWidget(
-              product: newList[index],
-            );
-          },
-        ),
+        body:
+            (CatalogModels.products != null && CatalogModels.products.isNotEmpty)
+                ? ListView.builder(
+                    itemCount: CatalogModels.products.length,
+                    itemBuilder: (context, index) {
+                      return ProductsWidget(
+                        product: CatalogModels.products[index],
+                      );
+                    },
+                  )
+                : const Center(
+                    child: CircularProgressIndicator(),
+                  ),
         drawer: const MyDrawer());
   }
 }
