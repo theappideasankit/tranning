@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -21,8 +20,14 @@ class MyDrawer extends StatelessWidget {
                   backgroundImage: NetworkImage(urlProfile),
                 ),
                 margin: EdgeInsets.zero,
-                accountName: Text("Ankit Mistry"),
-                accountEmail: Text("theappideas.ankit@gmail.com"),
+                accountName: const Text(
+                  "Ankit Mistry",
+                  style: TextStyle(color: Colors.white),
+                ),
+                accountEmail: const Text(
+                  "theappideas.ankit@gmail.com",
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ),
             const ListTile(
@@ -42,6 +47,16 @@ class MyDrawer extends StatelessWidget {
               ),
               title: Text(
                 "About",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+            const ListTile(
+              leading: Icon(
+                Icons.feedback_outlined,
+                color: Colors.white,
+              ),
+              title: Text(
+                "Feedback",
                 style: TextStyle(color: Colors.white),
               ),
             ),

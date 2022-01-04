@@ -15,13 +15,15 @@ class HomePage extends StatelessWidget {
     studentsMethod();
     return Scaffold(
       appBar: AppBar(
-        title: const Text("day1"),
+        title: const Text(
+          "day1",
+        ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-            child: Text("i completd $days Months internship in flutter"),
+            child: Text("i completed $days Months internship in flutter"),
           ),
           Text(name),
           Text("$pi"),

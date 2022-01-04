@@ -61,8 +61,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Email cannot be empty";
-                        } else
+                        } else {
                           return null;
+                        }
                       },
                       decoration: const InputDecoration(
                         labelText: "Email",
