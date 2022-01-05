@@ -49,7 +49,6 @@ class AddMutation extends VxMutation<MyStore> {
 
 class RemoveMutation extends VxMutation<MyStore> {
   final ProductModels products;
-
   RemoveMutation(this.products);
   @override
   perform() {

@@ -2,6 +2,7 @@ import 'package:day1/core/store.dart';
 import 'package:day1/models/cart_model.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CartProducts extends StatelessWidget {
@@ -37,7 +38,18 @@ class TotalCart extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          "\$${_cart.totalPrice}".text.xl4.color(context.accentColor).make(),
+          VxConsumer(
+            notifications: const {},
+            mutations: const {RemoveMutation},
+            builder: (context, store, status) {
+              return "\$${_cart.totalPrice}"
+                .text
+                .xl4
+                .color(context.accentColor)
+                .make();
+            },
+            
+          ),
           30.widthBox,
           ElevatedButton(
                   style: ButtonStyle(
@@ -61,6 +73,7 @@ class TotalCart extends StatelessWidget {
 class CartList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    VxState.watch(context, on: [RemoveMutation]);
     final CartModel _cart = (VxState.store as MyStore).cartModel;
     return _cart.productss.isEmpty
         ? "products not founds".text.xl.makeCentered()
@@ -71,10 +84,7 @@ class CartList extends StatelessWidget {
                 title: _cart.productss[index].name.text.make(),
                 leading: const FaIcon(FontAwesomeIcons.cartArrowDown),
                 trailing: IconButton(
-                    onPressed: () {
-                      _cart.remove(_cart.productss[index]);
-                      //  setState(() {});
-                    },
+                    onPressed: () => RemoveMutation(_cart.productss[index]),
                     icon: const Icon(Icons.remove)),
               );
             },
