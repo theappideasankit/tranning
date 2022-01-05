@@ -1,3 +1,4 @@
+import 'package:day1/models/cart_model.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -17,24 +18,25 @@ class CartProducts extends StatelessWidget {
         children: [
           const CartList().p32().expand(),
           const Divider(),
-          const _TotalCart(),
+          const TotalCart(),
         ],
       ),
     );
   }
 }
 
-class _TotalCart extends StatelessWidget {
-  const _TotalCart({Key key}) : super(key: key);
+class TotalCart extends StatelessWidget {
+  const TotalCart({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final _cart = CartModel();
     return SizedBox(
       height: 200,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          "\$1000".text.xl4.color(context.accentColor).make(),
+          "\$${_cart.totalPrice}".text.xl4.color(context.accentColor).make(),
           30.widthBox,
           ElevatedButton(
                   style: ButtonStyle(
@@ -63,11 +65,12 @@ class CartList extends StatefulWidget {
 class _CartListState extends State<CartList> {
   @override
   Widget build(BuildContext context) {
+    final _cart = CartModel();
     return ListView.builder(
-      itemCount: 10,
+      itemCount: _cart.productss?.length,
       itemBuilder: (context, index) {
         return ListTile(
-          title: "products".text.make(),
+          title: _cart.productss[index].name.text.make(),
           leading: const FaIcon(FontAwesomeIcons.cartArrowDown),
           trailing:
               IconButton(onPressed: () {}, icon: const Icon(Icons.remove)),

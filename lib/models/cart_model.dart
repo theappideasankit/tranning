@@ -1,6 +1,12 @@
 import 'package:day1/models/productmodel.dart';
 
 class CartModel {
+  static final cartModel = CartModel._internal();
+
+  CartModel._internal();
+
+  factory CartModel() => cartModel;
+
   CatalogModels _products;
 
   //collection of ids - stored IDs products
@@ -16,7 +22,7 @@ class CartModel {
 
   //get products list
   List<ProductModels> get productss =>
-      _productListsIds.map((id) => _products.getById(id));
+      _productListsIds.map((id) => _products.getById(id)).toList();
 
   // Get total prices
   num get totalPrice =>
@@ -32,5 +38,4 @@ class CartModel {
   void remove(ProductModels productModels) {
     _productListsIds.remove(productModels.id);
   }
-  
 }
