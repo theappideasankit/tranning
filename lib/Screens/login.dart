@@ -1,5 +1,6 @@
 import 'package:day1/utils/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key key}) : super(key: key);
@@ -28,97 +29,95 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              Image.asset(
-                "assets/images/welcome.png",
-                fit: BoxFit.cover,
-              ),
-              Text(
-                "Welcome $name",
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25,
+    return Material(
+      color: context.canvasColor,
+      child: SafeArea(
+        child: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                Image.asset(
+                  "assets/images/welcome.png",
+                  fit: BoxFit.cover,
                 ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                child: Column(
-                  children: [
-                    TextFormField(
-                      onChanged: (value) {
-                        name = value;
-                        setState(() {});
-                      },
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return "Email cannot be empty";
-                        } else {
-                          return null;
-                        }
-                      },
-                      decoration: const InputDecoration(
-                        labelText: "Email",
-                        hintText: "Enter Your Email",
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    TextFormField(
-                      obscureText: true,
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return "Password cannot be empty";
-                        } else if (value.length < 6) {
-                          return "Passsword length atleast 6";
-                        }
-                        return null;
-                      },
-                      decoration: const InputDecoration(
-                        labelText: "password",
-                        hintText: "Enter Your Password",
-                        border: OutlineInputBorder(),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Material(
-                      color: Colors.blueGrey,
-                      borderRadius:
-                          BorderRadius.circular(changeButton ? 20 : 10),
-                      child: InkWell(
-                        splashColor: Colors.blue,
-                        onTap: () => moveToHome(context),
-                        child: AnimatedContainer(
-                          duration: const Duration(seconds: 1),
-                          height: 50,
-                          width: changeButton ? 50 : 150,
-                          alignment: Alignment.center,
-                          child: changeButton
-                              ? const Icon(Icons.done)
-                              : const Text(
-                                  "Login",
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 20),
-                                ),
+                15.heightBox,
+                Text(
+                  "Welcome $name",
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                  ),
+                ),
+                15.heightBox,
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        onChanged: (value) {
+                          name = value;
+                          setState(() {});
+                        },
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return "Email cannot be empty";
+                          } else {
+                            return null;
+                          }
+                        },
+                        decoration: const InputDecoration(
+                          labelText: "Email",
+                          hintText: "Enter Your Email",
+                          border: OutlineInputBorder(),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              )
-            ],
+                      15.heightBox,
+                      TextFormField(
+                        obscureText: true,
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return "Password cannot be empty";
+                          } else if (value.length < 6) {
+                            return "Passsword length atleast 6";
+                          }
+                          return null;
+                        },
+                        decoration: const InputDecoration(
+                          labelText: "password",
+                          hintText: "Enter Your Password",
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                      15.heightBox,
+                      Material(
+                        color: Colors.blueGrey,
+                        borderRadius:
+                            BorderRadius.circular(changeButton ? 20 : 10),
+                        child: InkWell(
+                          splashColor: Colors.blue,
+                          onTap: () => moveToHome(context),
+                          child: AnimatedContainer(
+                            duration: const Duration(seconds: 1),
+                            height: 50,
+                            width: changeButton ? 50 : 150,
+                            alignment: Alignment.center,
+                            child: changeButton
+                                ? const Icon(Icons.done)
+                                : const Text(
+                                    "Login",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20),
+                                  ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

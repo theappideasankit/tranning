@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class CustomWidget {
   // ignore: non_constant_identifier_names
@@ -11,12 +12,39 @@ class CustomWidget {
           toolbarTextStyle: Theme.of(context).textTheme.bodyText1,
           titleTextStyle: Theme.of(context).textTheme.headline6,
         ),
-        primarySwatch: Colors.blueGrey,
+        cardColor: Colors.white,
+        canvasColor: creamColor,
+        // ignore: deprecated_member_use
+        accentColor: Colors.blueGrey,
+        // ignore: deprecated_member_use
+        buttonColor: darkbuttonColor,
         fontFamily: GoogleFonts.lato().fontFamily,
-        primaryTextTheme: GoogleFonts.latoTextTheme(),
+      );
+
+  static ThemeData darkTheme(BuildContext context) => ThemeData(
+        brightness: Brightness.dark,
+        cardColor: Colors.black,
+        canvasColor: darkBlueGrey,
+        primarySwatch: Colors.blueGrey,
+        // ignore: deprecated_member_use
+        accentColor: creamColor,
+        // ignore: deprecated_member_use
+        buttonColor: darkbuttonColor,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.black,
+          elevation: 0.0,
+          iconTheme: const IconThemeData(color: Colors.white),
+          toolbarTextStyle: Theme.of(context).textTheme.bodyText1,
+          titleTextStyle: Theme.of(context).textTheme.headline6,
+        ),
+        fontFamily: GoogleFonts.lato().fontFamily,
       );
 
   //colors
   static Color creamColor = const Color(0xfff5f5f5);
-  static Color darkBluishColor = const Color(0xFF263238);
+  static Color blueGrey = Vx.blueGray600;
+  static Color darkBlueGrey = Vx.gray900;
+  static Color darkColor = const Color(0xFF263238);
+  static Color lightbuttonColor = Vx.blueGray700;
+  static Color darkbuttonColor = Vx.blueGray600;
 }

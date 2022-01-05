@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:day1/CustomWidgets/custom.dart';
 import 'package:day1/utils/routes.dart';
 import 'package:day1/widgets/homewidgets/catalogheader.dart';
 import 'package:day1/widgets/homewidgets/catalogproducts.dart';
@@ -41,10 +40,14 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () => Navigator.pushNamed(context, MyRoute.CartRoute),
-          backgroundColor: CustomWidget.darkBluishColor,
-          child: FaIcon(FontAwesomeIcons.cartPlus),
+          // ignore: deprecated_member_use
+          backgroundColor: context.theme.buttonColor,
+          child: const FaIcon(
+            FontAwesomeIcons.cartPlus,
+            color: Colors.white,
+          ),
         ),
-        backgroundColor: CustomWidget.creamColor,
+        backgroundColor: context.canvasColor,
         body: SafeArea(
           child: Container(
             padding: Vx.m24,

@@ -15,22 +15,27 @@ class HomeDetails extends StatelessWidget {
       bottom: false,
       child: Scaffold(
         bottomNavigationBar: Container(
-          color: Colors.white,
+          color: context.cardColor,
           child: ButtonBar(
             alignment: MainAxisAlignment.spaceBetween,
             buttonPadding: Vx.mH8,
             children: [
-              "\$${products.price}".text.bold.xl3.make(),
+              "\$${products.price}"
+                  .text
+                  .color(context.accentColor)
+                  .bold
+                  .xl3
+                  .make(),
               ElevatedButton(
                       style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(
-                            CustomWidget.darkBluishColor,
+                            context.theme.buttonColor,
                           ),
                           shape: MaterialStateProperty.all(
                             const StadiumBorder(),
                           )),
                       onPressed: () {},
-                      child: "buy".text.make())
+                      child: "buy".text.xl2.make())
                   .wh(100, 50)
             ],
           ).p12(),
@@ -38,7 +43,7 @@ class HomeDetails extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
         ),
-        backgroundColor: CustomWidget.creamColor,
+        backgroundColor: context.canvasColor,
         body: Column(
           children: [
             Hero(
@@ -52,11 +57,11 @@ class HomeDetails extends StatelessWidget {
               arcType: VxArcType.CONVEY,
               child: Container(
                 width: context.screenWidth,
-                color: Colors.white,
+                color: context.cardColor,
                 child: Column(
                   children: [
                     products.name.text.bold.lg
-                        .color(CustomWidget.darkBluishColor)
+                        .color(context.accentColor)
                         .xl4
                         .make(),
                     products.desc.text
