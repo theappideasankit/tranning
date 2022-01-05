@@ -1,6 +1,5 @@
-import 'package:day1/CustomWidgets/custom.dart';
+
 import 'package:day1/Screens/home_details.dart';
-import 'package:day1/models/cart_model.dart';
 import 'package:day1/models/productmodel.dart';
 import 'package:day1/widgets/homewidgets/add_to_cart.dart';
 import 'package:day1/widgets/homewidgets/productimage.dart';
@@ -27,6 +26,7 @@ class CatalogProducts extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             productsData.name.text.bold.lg
+                // ignore: deprecated_member_use
                 .color(context.theme.accentColor)
                 .make(),
             productsData.desc.text.textStyle(context.captionStyle).make(),

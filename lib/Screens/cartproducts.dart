@@ -16,7 +16,7 @@ class CartProducts extends StatelessWidget {
       ),
       body: Column(
         children: [
-          const CartList().p32().expand(),
+         CartList().p32().expand(),
           const Divider(),
           const TotalCart(),
         ],
@@ -41,6 +41,7 @@ class TotalCart extends StatelessWidget {
           ElevatedButton(
                   style: ButtonStyle(
                       backgroundColor:
+                          // ignore: deprecated_member_use
                           MaterialStateProperty.all(context.theme.buttonColor)),
                   onPressed: () {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -55,14 +56,8 @@ class TotalCart extends StatelessWidget {
   }
 }
 
-class CartList extends StatefulWidget {
-  const CartList({Key key}) : super(key: key);
-
-  @override
-  _CartListState createState() => _CartListState();
-}
-
-class _CartListState extends State<CartList> {
+// ignore: use_key_in_widget_constructors
+class CartList extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     final _cart = CartModel();
@@ -77,7 +72,7 @@ class _CartListState extends State<CartList> {
                 trailing: IconButton(
                     onPressed: () {
                       _cart.remove(_cart.productss[index]);
-                      setState(() {});
+                    //  setState(() {});
                     },
                     icon: const Icon(Icons.remove)),
               );

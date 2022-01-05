@@ -4,23 +4,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class AddToCart extends StatefulWidget {
+class AddToCart extends StatelessWidget {
   final ProductModels products;
 
-  const AddToCart({Key key, this.products}) : super(key: key);
-  @override
-  State<AddToCart> createState() => _AddToCartState();
-}
+  AddToCart({Key key, this.products}) : super(key: key);
 
-class _AddToCartState extends State<AddToCart> {
   final _cart = CartModel();
   @override
   Widget build(BuildContext context) {
-    bool isIncart = _cart.productss.contains(widget.products) ?? false;
+    bool isIncart = _cart.productss.contains(products) ?? false;
 
     return ElevatedButton(
         style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(
+              // ignore: deprecated_member_use
               context.theme.buttonColor,
             ),
             shape: MaterialStateProperty.all(
@@ -31,11 +28,11 @@ class _AddToCartState extends State<AddToCart> {
             isIncart = isIncart.toggle();
             final _products = CatalogModels();
             _cart.products = _products;
-            _cart.add(widget.products);
-            setState(() {});
+            _cart.add(products);
+           // setState(() {});
           }
         },
         child:
-            isIncart ? Icon(Icons.done) : Icon(CupertinoIcons.cart_badge_plus));
+            isIncart ? const Icon(Icons.done) : const Icon(CupertinoIcons.cart_badge_plus));
   }
 }
