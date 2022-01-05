@@ -2,6 +2,11 @@ import 'dart:convert';
 
 class CatalogModels {
   static List<ProductModels> products;
+//get products by id
+
+   ProductModels getById(int id) =>
+      products.firstWhere((element) => element.id == id, orElse: null);
+   ProductModels getByPosition(int pos) => products[pos];
 }
 
 class ProductModels {
@@ -21,8 +26,6 @@ class ProductModels {
     this.image,
   });
 
- 
-
   ProductModels copyWith({
     int id,
     String name,
@@ -32,7 +35,7 @@ class ProductModels {
     String image,
   }) {
     return ProductModels(
-       id: id ?? this.id,
+      id: id ?? this.id,
       name: name ?? this.name,
       desc: desc ?? this.desc,
       price: price ?? this.price,
@@ -55,18 +58,19 @@ class ProductModels {
   factory ProductModels.fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
     return ProductModels(
-       id: map['id'],
+      id: map['id'],
       name: map['name'],
       desc: map['desc'],
       price: map['price'],
       color: map['color'],
-       image: map['image'],
+      image: map['image'],
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory ProductModels.fromJson(String source) => ProductModels.fromMap(json.decode(source));
+  factory ProductModels.fromJson(String source) =>
+      ProductModels.fromMap(json.decode(source));
 
   @override
   String toString() {
@@ -76,23 +80,23 @@ class ProductModels {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-  
+
     return other is ProductModels &&
-      other.id == id &&
-      other.name == name &&
-      other.desc == desc &&
-      other.price == price &&
-      other.color == color &&
-      other.image == image;
+        other.id == id &&
+        other.name == name &&
+        other.desc == desc &&
+        other.price == price &&
+        other.color == color &&
+        other.image == image;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-      name.hashCode ^
-      desc.hashCode ^
-      price.hashCode ^
-      color.hashCode ^
-      image.hashCode ;
+        name.hashCode ^
+        desc.hashCode ^
+        price.hashCode ^
+        color.hashCode ^
+        image.hashCode;
   }
 }

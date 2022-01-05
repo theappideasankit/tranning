@@ -35,7 +35,9 @@ class CustomWidget {
           elevation: 0.0,
           iconTheme: const IconThemeData(color: Colors.white),
           toolbarTextStyle: Theme.of(context).textTheme.bodyText1,
-          titleTextStyle: Theme.of(context).textTheme.headline6,
+          textTheme: Theme.of(context).textTheme.copyWith(
+            headline6: context.textTheme.headline6.copyWith(color: Colors.white)
+          )
         ),
         fontFamily: GoogleFonts.lato().fontFamily,
       );
