@@ -5,4 +5,6 @@ class MyRoute {
   static String HomeRoute = "/home";
   // ignore: non_constant_identifier_names
   static String HomeDetails = "/details";
+  // ignore: non_constant_identifier_names
+  static String CartRoute = "CartProduct";
 }

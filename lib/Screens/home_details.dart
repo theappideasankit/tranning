@@ -35,7 +35,9 @@ class HomeDetails extends StatelessWidget {
             ],
           ).p12(),
         ),
-        appBar: AppBar(),
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+        ),
         backgroundColor: CustomWidget.creamColor,
         body: Column(
           children: [
@@ -61,8 +63,14 @@ class HomeDetails extends StatelessWidget {
                         .textStyle(context.captionStyle)
                         .xl
                         .make(),
+                    "At et no voluptua amet eos dolor et. Tempor ipsum ut gubergren sanctus dolore stet et ut. Sanctus no sed dolore rebum, sanctus diam stet dolore consetetur magna erat rebum lorem sadipscing. Dolores clita amet sit diam sit ea voluptua et, stet kasd at sit eirmod. Ipsum justo invidunt diam."
+                        .text
+                        .xl
+                        .textStyle(context.captionStyle)
+                        .make()
+                        .p16()
                   ],
-                ).p64(),
+                ).py64(),
               ),
             ))
           ],

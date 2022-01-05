@@ -1,4 +1,5 @@
 import 'package:day1/CustomWidgets/custom.dart';
+import 'package:day1/Screens/cartproducts.dart';
 import 'package:day1/Screens/homepage.dart';
 import 'package:day1/Screens/login.dart';
 import 'package:day1/utils/routes.dart';
@@ -22,7 +23,8 @@ class MyApp extends StatelessWidget {
       initialRoute: MyRoute.HomeRoute,
       routes: {
         MyRoute.HomeRoute: (context) => const HomePage(),
-        MyRoute.LoginRoute: (context) => const LoginScreen()
+        MyRoute.LoginRoute: (context) => const LoginScreen(),
+        MyRoute.CartRoute: (context) => const CartProducts()
       },
     );
   }

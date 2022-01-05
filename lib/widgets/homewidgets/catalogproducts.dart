@@ -17,8 +17,8 @@ class CatalogProducts extends StatelessWidget {
         child: Row(
       children: [
         Hero(
-          tag: Key(productsData.id.toString()),
-          child: ProductImage(image: productsData.image)),
+            tag: Key(productsData.id.toString()),
+            child: ProductImage(image: productsData.image)),
         Expanded(
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,7 +42,7 @@ class CatalogProducts extends StatelessWidget {
                           const StadiumBorder(),
                         )),
                     onPressed: () {},
-                    child: "buy".text.make())
+                    child: "Buy".text.make())
               ],
             ).pOnly(right: 8.0)
           ],

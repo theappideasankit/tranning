@@ -1,8 +1,9 @@
 import 'dart:convert';
 import 'package:day1/CustomWidgets/custom.dart';
+import 'package:day1/utils/routes.dart';
 import 'package:day1/widgets/homewidgets/catalogheader.dart';
 import 'package:day1/widgets/homewidgets/catalogproducts.dart';
-
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:day1/models/productmodel.dart';
@@ -36,21 +37,28 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: CustomWidget.creamColor,
-      body: SafeArea(
-        child: Container(
-          padding: Vx.m24,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const CatalogHeader(),
-              if (CatalogModels.products != null &&
-                  CatalogModels.products.isNotEmpty)
-                const CatalogList().py16().expand()
-              else
-                const CircularProgressIndicator().centered().expand(),
-            ],
+    return SafeArea(
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => Navigator.pushNamed(context, MyRoute.CartRoute),
+          backgroundColor: CustomWidget.darkBluishColor,
+          child: FaIcon(FontAwesomeIcons.cartPlus),
+        ),
+        backgroundColor: CustomWidget.creamColor,
+        body: SafeArea(
+          child: Container(
+            padding: Vx.m24,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const CatalogHeader(),
+                if (CatalogModels.products != null &&
+                    CatalogModels.products.isNotEmpty)
+                  const CatalogList().py16().expand()
+                else
+                  const CircularProgressIndicator().centered().expand(),
+              ],
+            ),
           ),
         ),
       ),
