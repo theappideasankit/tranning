@@ -45,9 +45,9 @@ class CustomWidget {
 
   //colors
   static Color creamColor = const Color(0xfff5f5f5);
-  static Color blueGrey = Vx.blueGray600;
+  static Color blueGrey = Vx.gray900;
   static Color darkBlueGrey = Vx.gray900;
   static Color darkColor = const Color(0xFF263238);
-  static Color lightbuttonColor = Vx.blueGray700;
-  static Color darkbuttonColor = Vx.blueGray600;
+  static Color lightbuttonColor = Vx.gray900;
+  static Color darkbuttonColor = Vx.gray900;
 }

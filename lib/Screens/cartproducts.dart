@@ -1,3 +1,4 @@
+import 'package:day1/core/store.dart';
 import 'package:day1/models/cart_model.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -16,7 +17,7 @@ class CartProducts extends StatelessWidget {
       ),
       body: Column(
         children: [
-         CartList().p32().expand(),
+          CartList().p32().expand(),
           const Divider(),
           const TotalCart(),
         ],
@@ -30,7 +31,7 @@ class TotalCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _cart = CartModel();
+    final CartModel _cart = (VxState.store as MyStore).cartModel;
     return SizedBox(
       height: 200,
       child: Row(
@@ -57,10 +58,10 @@ class TotalCart extends StatelessWidget {
 }
 
 // ignore: use_key_in_widget_constructors
-class CartList extends StatelessWidget{
+class CartList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _cart = CartModel();
+    final CartModel _cart = (VxState.store as MyStore).cartModel;
     return _cart.productss.isEmpty
         ? "products not founds".text.xl.makeCentered()
         : ListView.builder(
@@ -72,7 +73,7 @@ class CartList extends StatelessWidget{
                 trailing: IconButton(
                     onPressed: () {
                       _cart.remove(_cart.productss[index]);
-                    //  setState(() {});
+                      //  setState(() {});
                     },
                     icon: const Icon(Icons.remove)),
               );

@@ -90,7 +90,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           border: OutlineInputBorder(),
                         ),
                       ),
-                      15.heightBox,
+                      const SizedBox(
+                        height: 10,
+                      ),
                       Material(
                         color: Colors.blueGrey,
                         borderRadius:

@@ -1,7 +1,8 @@
+import 'package:day1/core/store.dart';
 import 'package:day1/models/productmodel.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class CartModel {
-
   CatalogModels _products;
 
   //collection of ids - stored IDs products
@@ -32,5 +33,26 @@ class CartModel {
   //remove products
   void remove(ProductModels productModels) {
     _productListsIds.remove(productModels.id);
+  }
+}
+
+class AddMutation extends VxMutation<MyStore> {
+  final ProductModels products;
+
+  AddMutation(this.products);
+
+  @override
+  perform() {
+    store.cartModel._productListsIds.add(products.id);
+  }
+}
+
+class RemoveMutation extends VxMutation<MyStore> {
+  final ProductModels products;
+
+  RemoveMutation(this.products);
+  @override
+  perform() {
+    store.cartModel._productListsIds.remove(products.id);
   }
 }
