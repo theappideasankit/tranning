@@ -18,8 +18,8 @@
         },
         {
             "id": 3,
-            "name": "M1 Macbook Air",
-            "desc": "Apple Macbook air with apple silicon",
+            "name": "M1 Mac book Air",
+            "desc": "Apple Mac book air with apple silicon",
             "price": 1099,
             "color": "#e0bfae",
             "image": "https://support.apple.com/library/APPLE/APPLECARE_ALLGEOS/SP825/macbookair.png"
@@ -34,8 +34,8 @@
         },
         {
             "id": 5,
-            "name": "Airpods Pro",
-            "desc": "Apple Aipods Pro 1st generation",
+            "name": "Air pods Pro",
+            "desc": "Apple Ai pods Pro 1st generation",
             "price": 200,
             "color": "#e3e4e9",
             "image": "https://crdms.images.consumerreports.org/c_lfill,w_598/prod/products/cr/models/400116-wireless-portable-headphones-apple-airpods-pro-10009323.png"
