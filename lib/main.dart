@@ -1,16 +1,17 @@
-import 'package:day1/CustomWidgets/custom.dart';
-import 'package:day1/Screens/cartproducts.dart';
-import 'package:day1/Screens/homepage.dart';
-import 'package:day1/Screens/login.dart';
-import 'package:day1/core/store.dart';
-import 'package:day1/utils/routes.dart';
+import 'package:day1/App1/CustomWidgets/custom.dart';
+import 'package:day1/App1/Screens/login.dart';
+import 'package:day1/App1/core/store.dart';
+import 'package:day1/App1/utils/routes.dart';
+import 'package:day1/tranning.dart';
+
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import 'App1/Screens/cartproducts.dart';
+import 'App1/Screens/homepage.dart';
+
 void main() {
-  runApp(VxState(
-    store: MyStore(),
-    child: const MyApp()));
+  runApp(VxState(store: MyStore(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -24,11 +25,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: CustomWidget.lightTheme(context),
       darkTheme: CustomWidget.darkTheme(context),
-      initialRoute: MyRoute.HomeRoute,
+      initialRoute: MyRoute.TranningApps,
       routes: {
         MyRoute.HomeRoute: (context) => const HomePage(),
         MyRoute.LoginRoute: (context) => const LoginScreen(),
-        MyRoute.CartRoute: (context) => const CartProducts()
+        MyRoute.CartRoute: (context) => const CartProducts(),
+        MyRoute.TranningApps: (context) => const Tranning()
       },
     );
   }

@@ -1,10 +1,10 @@
-
-import 'package:day1/Screens/home_details.dart';
-import 'package:day1/models/productmodel.dart';
-import 'package:day1/widgets/homewidgets/add_to_cart.dart';
-import 'package:day1/widgets/homewidgets/productimage.dart';
+import 'package:day1/App1/Screens/home_details.dart';
+import 'package:day1/App1/models/productmodel.dart';
+import 'package:day1/App1/widgets/homewidgets/productimage.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import 'add_to_cart.dart';
 
 class CatalogProducts extends StatelessWidget {
   final ProductModels productsData;

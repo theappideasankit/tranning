@@ -1,5 +1,6 @@
-import 'package:day1/core/store.dart';
-import 'package:day1/models/productmodel.dart';
+
+import 'package:day1/App1/core/store.dart';
+import 'package:day1/App1/models/productmodel.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class CartModel {
