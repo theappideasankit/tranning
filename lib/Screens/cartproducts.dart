@@ -18,7 +18,7 @@ class CartProducts extends StatelessWidget {
       ),
       body: Column(
         children: [
-          CartList().p32().expand(),
+          CartList().p12().expand(),
           const Divider(),
           const TotalCart(),
         ],
@@ -34,7 +34,7 @@ class TotalCart extends StatelessWidget {
   Widget build(BuildContext context) {
     final CartModel _cart = (VxState.store as MyStore).cartModel;
     return SizedBox(
-      height: 200,
+      height: 100,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -43,12 +43,12 @@ class TotalCart extends StatelessWidget {
             mutations: const {RemoveMutation},
             builder: (context, store, status) {
               return "\$${_cart.totalPrice}"
-                .text
-                .xl4
-                .color(context.accentColor)
-                .make();
+                  .text
+                  .xl4
+                  .bold
+                  .color(Vx.red800)
+                  .make();
             },
-            
           ),
           30.widthBox,
           ElevatedButton(
@@ -62,7 +62,8 @@ class TotalCart extends StatelessWidget {
                     );
                   },
                   child: "Buy".text.xl.make())
-              .w24(context),
+              .cornerRadius(18)
+              .wh(100, 40),
         ],
       ),
     );

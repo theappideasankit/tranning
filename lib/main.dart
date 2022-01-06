@@ -10,7 +10,6 @@ import 'package:velocity_x/velocity_x.dart';
 void main() {
   runApp(VxState(
     store: MyStore(),
-
     child: const MyApp()));
 }
 

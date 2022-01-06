@@ -73,7 +73,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           border: OutlineInputBorder(),
                         ),
                       ),
-                      15.heightBox,
+                      const SizedBox(
+                        height: 10,
+                      ),
                       TextFormField(
                         obscureText: true,
                         validator: (value) {
@@ -119,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 )
               ],
-            ),
+            ).expand(),
           ),
         ),
       ),

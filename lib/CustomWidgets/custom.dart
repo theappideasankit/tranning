@@ -15,7 +15,7 @@ class CustomWidget {
         cardColor: Colors.white,
         canvasColor: creamColor,
         // ignore: deprecated_member_use
-        accentColor: Colors.blueGrey,
+        accentColor: darkBlueGrey,
         // ignore: deprecated_member_use
         buttonColor: darkbuttonColor,
         fontFamily: GoogleFonts.lato().fontFamily,
@@ -23,23 +23,22 @@ class CustomWidget {
 
   static ThemeData darkTheme(BuildContext context) => ThemeData(
         brightness: Brightness.dark,
-        cardColor: Colors.black,
+        cardColor: Colors.black26,
         canvasColor: darkBlueGrey,
         primarySwatch: Colors.blueGrey,
         // ignore: deprecated_member_use
-        accentColor: creamColor,
+        accentColor: Colors.white,
         // ignore: deprecated_member_use
         buttonColor: darkbuttonColor,
         appBarTheme: AppBarTheme(
-          backgroundColor: Colors.black,
-          elevation: 0.0,
-          iconTheme: const IconThemeData(color: Colors.white),
-          toolbarTextStyle: Theme.of(context).textTheme.bodyText1,
-          // ignore: deprecated_member_use
-          textTheme: Theme.of(context).textTheme.copyWith(
-            headline6: context.textTheme.headline6.copyWith(color: Colors.white)
-          )
-        ),
+            backgroundColor: Colors.black,
+            elevation: 0.0,
+            iconTheme: const IconThemeData(color: Colors.white),
+            toolbarTextStyle: Theme.of(context).textTheme.bodyText1,
+            // ignore: deprecated_member_use
+            textTheme: Theme.of(context).textTheme.copyWith(
+                headline6:
+                    context.textTheme.headline6.copyWith(color: Colors.white))),
         fontFamily: GoogleFonts.lato().fontFamily,
       );
 
@@ -50,4 +49,5 @@ class CustomWidget {
   static Color darkColor = const Color(0xFF263238);
   static Color lightbuttonColor = Vx.blueGray700;
   static Color darkbuttonColor = Vx.blueGray600;
+  static Color priceColor = Vx.red900;
 }
