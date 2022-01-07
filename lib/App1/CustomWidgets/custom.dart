@@ -18,6 +18,7 @@ class CustomWidget {
         accentColor: darkBlueGrey,
         // ignore: deprecated_member_use
         buttonColor: darkbuttonColor,
+        primaryColor: darkBlueGrey,
         fontFamily: GoogleFonts.lato().fontFamily,
       );
 
