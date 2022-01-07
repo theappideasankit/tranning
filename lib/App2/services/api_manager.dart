@@ -12,7 +12,7 @@ class ApiManager {
     var newsModel;
 
     try {
-      var response = await client.get(Strings.url);
+      var response = await client.get(Uri.parse(Strings.url));
       if (response.statusCode == 200) {
         var jsonString = response.body;
         var jsonMap = json.decode(jsonString);

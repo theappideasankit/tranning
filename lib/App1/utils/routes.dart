@@ -9,4 +9,8 @@ class MyRoute {
   static String CartRoute = "CartProduct";
   // ignore: non_constant_identifier_names
   static String TranningApps = "Tranning";
+  // ignore: non_constant_identifier_names
+  static String Splash = "Splash";
+  // ignore: non_constant_identifier_names
+  static String IntroScrenn = " introduction";
 }
