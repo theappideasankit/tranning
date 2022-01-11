@@ -138,13 +138,4 @@ class _RegisterPageState extends State<RegisterPage> {
       return false;
     }
   }
-/*
-  bool validateAndSave() {
-    final form = _formKey.currentState;
-    if (form.validate()) {
-      form.save();
-      return true;
-    }
-    return false;
-  }*/
 }
