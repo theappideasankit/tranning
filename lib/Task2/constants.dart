@@ -10,4 +10,11 @@ class Constants{
   static bool isApiCalled = true;
   static final scaffoldKey = GlobalKey<ScaffoldState>();
 
+  static String urlLogin = "https://chessmafia.com/php/fitnow/FitNowApp/api/login";
+
+  static String token = 'naGR82kAHrw9INWVbAKvbPQLYUIAyaABPzRXnfYH';
+
+
+
+
 }

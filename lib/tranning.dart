@@ -1,19 +1,74 @@
+
+import 'dart:io';
+
 import 'package:day1/App1/CustomWidgets/custom.dart';
 import 'package:day1/App1/Screens/login.dart';
 import 'package:day1/App2/pages/homepage.dart';
 import 'package:day1/Task2/pages/loginScreen.dart';
-import 'package:day1/Task2/pages/registerPage.dart';
 import 'package:day1/drawer.dart';
 import 'package:day1/introduction.dart';
+import 'package:flutter/services.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:day1/recipeApp/home_recipe.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:lottie/lottie.dart';
+import 'package:device_info/device_info.dart';
 
 // ignore: must_be_immutable, use_key_in_widget_constructors
-class Tranning extends StatelessWidget {
+class Tranning extends StatefulWidget {
+  @override
+  State<Tranning> createState() => _TranningState();
+}
+
+class _TranningState extends State<Tranning> {
   double prcentage = 0.0;
+ @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // FirebaseMessaging.instance.getToken().then((fcmToken) {
+    //   print("FCM TOKEN :");
+    //   print(fcmToken);
+    // });
+    _deviceDetails();
+  }
+
+  String deviceName ='';
+  String deviceVersion ='';
+  String identifier= '';
+
+  Future<void>_deviceDetails() async{
+    final DeviceInfoPlugin deviceInfoPlugin =  DeviceInfoPlugin();
+    try {
+      if (Platform.isAndroid) {
+        var build = await deviceInfoPlugin.androidInfo;
+        setState(() {
+          deviceName = build.model;
+          deviceVersion = build.version.toString();
+          identifier = build.androidId;
+          print(deviceName);
+          print(deviceVersion);
+          print(identifier);
+        });
+        //UUID for Android
+      } else if (Platform.isIOS) {
+        var data = await deviceInfoPlugin.iosInfo;
+        setState(() {
+          deviceName = data.name;
+          deviceVersion = data.systemVersion;
+          identifier = data.identifierForVendor;
+          print(deviceName);
+          print(deviceVersion);
+          print(identifier);
+        });//UUID for iOS
+      }
+    } on PlatformException {
+      print('Failed to get platform version');
+    }
+
+  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +98,7 @@ class Tranning extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: "Tranning Tasks".text.make(),
+        title: "Training Tasks".text.make(),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -185,7 +240,7 @@ class Tranning extends StatelessWidget {
                 onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const RegisterPage())),
+                        builder: (context) =>  LoginPage())),
                 child: SizedBox(
                   child: "All API"
                       .text

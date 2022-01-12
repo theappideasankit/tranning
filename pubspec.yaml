@@ -28,12 +28,15 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
 
+
+  device_info: ^2.0.3
+  firebase: ^9.0.2
+  firebase_core: ^1.11.0
+  firebase_messaging: ^11.2.5
   flutter:
     sdk: flutter
-
   logger: ^1.1.0
   lottie: ^1.2.1
-
   shimmer: ^2.0.0
   snippet_coder_utils: ^1.0.9
   svg_icon: ^0.0.1

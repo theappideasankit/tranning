@@ -5,12 +5,15 @@ import 'package:day1/App1/utils/routes.dart';
 import 'package:day1/introduction.dart';
 import 'package:day1/splashscreen.dart';
 import 'package:day1/tranning.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'App1/Screens/cartproducts.dart';
 import 'App1/Screens/homepage.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(VxState(store: MyStore(), child: const MyApp()));
 }
 
@@ -30,7 +33,7 @@ class MyApp extends StatelessWidget {
         MyRoute.HomeRoute: (context) => const HomePage(),
         MyRoute.LoginRoute: (context) => const LoginScreen(),
         MyRoute.CartRoute: (context) => const CartProducts(),
-        MyRoute.TranningApps: (context) =>  Tranning(),
+        MyRoute.TranningApps: (context) => Tranning(),
         MyRoute.Splash: (context) => const SplashScreen(),
         MyRoute.IntroScrenn: (context) => IntroductionPage()
       },
