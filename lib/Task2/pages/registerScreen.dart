@@ -82,6 +82,24 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               10.heightBox,
               TextFormField(
+                validator: (val) {
+                  if (val.isEmpty) {
+                    return "Enter your number";
+                  } else
+                    return null;
+                },
+                onSaved: (onSavedVal) => {
+                  userModel.phoneNo = onSavedVal.toString().trim(),
+                },
+                decoration: InputDecoration(
+                  labelText: "number",
+                  hintText: "number",
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                ),
+              ),
+              10.heightBox,
+              TextFormField(
                 controller: Constants.passController,
                 onSaved: (onSavedVal) =>
                     {userModel.password = onSavedVal.toString().trim()},
