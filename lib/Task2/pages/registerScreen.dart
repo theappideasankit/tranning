@@ -1,6 +1,6 @@
 import 'package:day1/App1/Screens/homepage.dart';
 import 'package:day1/Task2/constants.dart';
-import 'package:day1/Task2/model/user_model.dart';
+import 'package:day1/Task2/model/register_model.dart';
 import 'package:day1/Task2/pages/loginScreen.dart';
 import 'package:day1/Task2/service/api_service.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +55,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 onSaved: (onSavedVal) =>
                     {userModel.emailId = onSavedVal.toString().trim()},
                 decoration: InputDecoration(
-                    hintText: "Enter Email",
+                    hintText: "Enter your email",
                     labelText: "Email",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -79,6 +79,24 @@ class _RegisterPageState extends State<RegisterPage> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     )),
+              ),
+              10.heightBox,
+              TextFormField(
+                validator: (val) {
+                  if (val.isEmpty) {
+                    return "Enter your number";
+                  } else
+                    return null;
+                },
+                onSaved: (onSavedVal) => {
+                  userModel.phoneNo = onSavedVal.toString().trim(),
+                },
+                decoration: InputDecoration(
+                  labelText: "number",
+                  hintText: "number",
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                ),
               ),
               10.heightBox,
               TextFormField(

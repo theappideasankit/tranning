@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class CustomWidget {
@@ -19,7 +18,7 @@ class CustomWidget {
         // ignore: deprecated_member_use
         buttonColor: darkbuttonColor,
         primaryColor: darkBlueGrey,
-        fontFamily: GoogleFonts.lato().fontFamily,
+       // fontFamily: GoogleFonts.lato().fontFamily,
       );
 
   static ThemeData darkTheme(BuildContext context) => ThemeData(
@@ -40,7 +39,7 @@ class CustomWidget {
             textTheme: Theme.of(context).textTheme.copyWith(
                 headline6:
                     context.textTheme.headline6.copyWith(color: Colors.white))),
-        fontFamily: GoogleFonts.lato().fontFamily,
+       // fontFamily: GoogleFonts.lato().fontFamily,
       );
 
   //colors
