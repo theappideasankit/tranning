@@ -55,7 +55,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 onSaved: (onSavedVal) =>
                     {userModel.emailId = onSavedVal.toString().trim()},
                 decoration: InputDecoration(
-                    hintText: "Enter Email",
+                    hintText: "Enter your email",
                     labelText: "Email",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -79,6 +79,24 @@ class _RegisterPageState extends State<RegisterPage> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     )),
+              ),
+              10.heightBox,
+              TextFormField(
+                validator: (val) {
+                  if (val.isEmpty) {
+                    return "Enter your number";
+                  } else
+                    return null;
+                },
+                onSaved: (onSavedVal) => {
+                  userModel.phoneNo = onSavedVal.toString().trim(),
+                },
+                decoration: InputDecoration(
+                  labelText: "number",
+                  hintText: "number",
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                ),
               ),
               10.heightBox,
               TextFormField(

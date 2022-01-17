@@ -1,14 +1,15 @@
-import 'dart:convert';
-import 'dart:developer';
-import 'dart:io';
-
 import 'package:day1/App1/Screens/homepage.dart';
 import 'package:day1/App1/utils/routes.dart';
 import 'package:day1/Task2/constants.dart';
+import 'package:day1/Task2/model/login_model.dart';
+import 'package:day1/Task2/pages/BottomNavPages/bottom_bar.dart';
+import 'package:day1/Task2/pages/profileScreen.dart';
+import 'package:day1/Task2/service/api_service.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import 'package:snippet_coder_utils/FormHelper.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:http/http.dart' as http;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key key}) : super(key: key);
@@ -19,7 +20,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-
+  LoginRequestModel loginRequestModel;
   bool changeButton = true;
 
   moveToHome(BuildContext context) async {
@@ -36,117 +37,142 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loginRequestModel = LoginRequestModel();
+    FirebaseMessaging.instance.getToken().then((fcmToken) {
+      print("FCM TOKEN :");
+      print(fcmToken);
+      Constants.fcmtoken = fcmToken;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-      children: [
-        Form(
-          key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              "Login".text.xl4.extraBold.make().centered(),
-              15.heightBox,
-              TextField(
-                controller: Constants.emailController,
-                decoration: const InputDecoration(
-                    hintText: "Enter Email",
-                    labelText: "Email",
-                    border: OutlineInputBorder()),
-              ),
-              10.heightBox,
-              TextField(
-                controller: Constants.passController,
-                decoration: const InputDecoration(
-                    hintText: "enter your Password",
-                    labelText: "password",
-                    border: OutlineInputBorder()),
-              ),
-              10.heightBox,
-              Material(
-                color: Colors.blueGrey,
-                borderRadius: BorderRadius.circular(10),
-                child: InkWell(
-                  splashColor: Colors.blue,
-                  onTap: () => signInMethod(Constants.emailController.text,
-                      Constants.passController.text),
-                  child: AnimatedContainer(
-                    height: 50,
+        key: Constants.scaffoldKey,
+        body: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                    height: 200,
                     width: MediaQuery.of(context).size.width,
-                    duration: const Duration(seconds: 5),
-                    child: "Login".text.xl2.make().centered(),
-                  ),
+                    child: Lottie.asset("assets/files/login.json"))
+                    .p20(),
+                "Login".text.xl4.extraBold.make().p12(),
+                const Divider(),
+                TextFormField(
+                  onSaved: (input) => loginRequestModel.email = input,
+                  validator: (input) =>
+                      !input.contains('@') ? "Email Id should be valid" : null,
+                  decoration: const InputDecoration(
+                      hintText: "Enter Email",
+                      labelText: "Email",
+                      border: OutlineInputBorder()),
                 ),
-              )
-            ],
+                10.heightBox,
+                TextFormField(
+                  onSaved: (input) => loginRequestModel.password = input,
+                  decoration: const InputDecoration(
+                      hintText: "enter your Password",
+                      labelText: "password",
+                      border: OutlineInputBorder()),
+                ),
+                10.heightBox,
+                Material(
+                  color: Colors.blueGrey,
+                  borderRadius: BorderRadius.circular(10),
+                  child: InkWell(
+                    splashColor: Colors.blue,
+                    onTap: () {
+                      if (validateAndSave()) {
+                        setState(() {
+                          Constants.isApiCallProcess = true;
+                        });
+                        APIServices.signInMethod(loginRequestModel)
+                            .then((LoginResponseModel response) {
+                              //print(response);
+                          if (response != null) {
+                            setState(() {
+                              Constants.isApiCallProcess = false;
+                            });
+                            if (response.code == 200) {
+
+                              FormHelper.showSimpleAlertDialog(
+                                context,
+                                "FitNow Login success",
+                                response.message,
+                                "Ok",
+                                    () {
+                                      Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => const BottomBar()));
+                                },
+                              );
+                            } else {
+                              FormHelper.showSimpleAlertDialog(
+                                context,
+                                " Login Fail",
+                                response.message,
+                                "Ok",
+                                    () {
+                                  Navigator.of(context).pop();
+                                },
+                              );
+                            }
+                          /*  if (value.message.isNotEmpty) {
+                             *//* FormHelper.showSimpleAlertDialog(
+                                context,
+                                " Login Success",
+                                loginRequestModel.email,
+                                "Ok",
+                                () {
+                                  Navigator.of(context).pop();
+                                },
+                              );*//*
+
+                              final snackBar = SnackBar(
+                                  content: "Login Successful"
+                                      .text
+                                      .color(Colors.black)
+                                      .make());
+                              Constants.scaffoldKey.currentState
+                                  .showSnackBar(snackBar);
+                            } else {
+                              final snackBar =
+                                  SnackBar(content: value.message.text.color(Colors.black).make());
+                              Constants.scaffoldKey.currentState
+                                  .showSnackBar(snackBar);
+                            }*/
+                          }
+                        });
+                      }
+                    },
+                    child: AnimatedContainer(
+                      height: 50,
+                      width: MediaQuery.of(context).size.width,
+                      duration: const Duration(seconds: 5),
+                      child: "Login".text.xl2.make().centered(),
+                    ),
+                  ),
+                )
+              ],
+            ).p16(),
           ).p16(),
-        ).p16(),
-      ],
-    ));
+        ));
   }
-  String pass = '123456789';
-  String email = 'akki10@gmail.com';
 
-  signInMethod(String email, String pass) async {
-    var fcmtoken;
-    FirebaseMessaging.instance.getToken().then((fcmToken) {
-      fcmToken = fcmtoken;
-    });
-/*
-    Map<String, String> header = {"_token": Constants.token};
-
-    var map = Map<String, dynamic>();
-*/
-
-/*
-    final response =
-    await http.post(Uri.parse(Constants.urlLogin), body: map, headers: header);
-
-    map["email"] = email;
-    map["password"] = pass;
-    map['fcm_token'] = fcmtoken.value;
-    map['device_type'] = Platform.isAndroid ? "android" : "ios";
-
-    //var url = "/login";
-*/
-
-    http.post(Uri.parse(Constants.urlLogin), headers: {
-      'Accept': 'application/json',
-      'authorization': 'pass your key(optional)'
-    }, body: {
-      "email": email,
-      "password": pass
-    }).then((response) {
-      print(response.statusCode);
-      var responseJson = json.decode(response.body);
-      print(responseJson);
+  bool validateAndSave() {
+    final form = _formKey.currentState;
+    if (form.validate()) {
+      form.save();
+      return true;
     }
-        //print(map["email"]);
-
-        // var responseJson = null;
-
-/*    var response = await http.post(Uri.parse(Constants.urlLogin), body: {
-      "_token": Constants.token,
-      "email": "kushal"
-      "password": "1111111"
-    });*/
-
-        /* if (response.statusCode == 200) {
-      responseJson = json.decode(response.body);
-      if (responseJson != null) {
-        print(responseJson['_token']);
-        print(responseJson['message']);
-        print(responseJson);
-        Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (BuildContext context) => const HomePage(),
-            ));
-      }
-    } else {
-      String err = "email or password wrong!!!!";
-      log(err);
-      print("email or password wrong!!!!");
-    }*/
-        );
+    return false;
   }
 }

@@ -1,79 +1,11 @@
 import 'dart:convert';
 
-/*
-ViewProfileResponse viewResponseFromJson(String str) =>
-    ViewProfileResponse.fromJson(json.decode(str));
-*/
+UpdateProfileResponse updateProfileFromJson(String str) => UpdateProfileResponse.fromJson(json.decode(str));
 
-ViewProfileResponse newsModelFromJson(String str) => ViewProfileResponse.fromJson(json.decode(str));
+String updateProfileToJson(UpdateProfileResponse data) => json.encode(data.toJson());
 
-String newsModelToJson(ViewProfileResponse data) => json.encode(data.toJson());
-
-/*
-class ViewProfileModel {
-  String email;
-  String password;
-  String token;
-
-
-  ViewProfileModel({
-    this.email,
-    this.password,
-    this.token
-  });
-
-  ViewProfileModel.fromJson(Map<String, dynamic> json) {
-    email = json['username'];
-    password = json['password'];
-  }
-
-  Map<String, dynamic> toJson() {
-    var fcmtoken;
-    FirebaseMessaging.instance.getToken().then((fcmToken) {
-      fcmtoken=fcmToken  ;
-    });
-    Map<String, dynamic> map = {
-      'username': email.trim(),
-      'password': password.trim(),
-      'fcm_token': fcmtoken.toString().trim(),
-      'device_type'
-          : Platform.isAndroid ? "android" : "ios",
-    };
-    return
-      map;
-  }
-}
-
-class ViewProfileResponse {
-  int code;
-  String message;
-
-  ViewProfileResponse({this.code, this.message});
-
-  ViewProfileResponse.fromJson(Map<String, dynamic> json) {
-    code = json['code'];
-    message = json['message'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['code'] = this.code;
-    data['message'] = this.message;
-    return data;
-  }
-}
-*/
-// To parse this JSON data, do
-//
-//     final viewProfileResponse = viewProfileResponseFromJson(jsonString);
-
-
-ViewProfileResponse viewProfileResponseFromJson(String str) => ViewProfileResponse.fromJson(json.decode(str));
-
-String viewProfileResponseToJson(ViewProfileResponse data) => json.encode(data.toJson());
-
-class ViewProfileResponse {
-  ViewProfileResponse({
+class UpdateProfileResponse {
+  UpdateProfileResponse({
     this.status,
     this.message,
     this.code,
@@ -83,13 +15,13 @@ class ViewProfileResponse {
   String status;
   String message;
   int code;
-  Data data;
+  UpdateUserProfileModel data;
 
-  factory ViewProfileResponse.fromJson(Map<String, dynamic> json) => ViewProfileResponse(
+  factory UpdateProfileResponse.fromJson(Map<String, dynamic> json) => UpdateProfileResponse(
     status: json["status"],
     message: json["message"],
     code: json["code"],
-    data: Data.fromJson(json["data"]),
+    data: UpdateUserProfileModel.fromJson(json["data"]),
   );
 
   Map<String, dynamic> toJson() => {
@@ -100,8 +32,8 @@ class ViewProfileResponse {
   };
 }
 
-class Data {
-  Data({
+class UpdateUserProfileModel {
+  UpdateUserProfileModel({
     this.id,
     this.apiToken,
     this.username,
@@ -125,11 +57,6 @@ class Data {
     this.deviceType,
     this.createdAt,
     this.updatedAt,
-    this.myTrainerCount,
-    this.followersCount,
-    this.followingCount,
-    this.postList,
-    this.settingInfo,
   });
 
   int id;
@@ -155,13 +82,8 @@ class Data {
   String deviceType;
   DateTime createdAt;
   DateTime updatedAt;
-  int myTrainerCount;
-  int followersCount;
-  int followingCount;
-  List<dynamic> postList;
-  dynamic settingInfo;
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
+  factory UpdateUserProfileModel.fromJson(Map<String, dynamic> json) => UpdateUserProfileModel(
     id: json["id"],
     apiToken: json["api_token"],
     username: json["username"],
@@ -185,11 +107,6 @@ class Data {
     deviceType: json["device_type"],
     createdAt: DateTime.parse(json["created_at"]),
     updatedAt: DateTime.parse(json["updated_at"]),
-    myTrainerCount: json["my_trainer_count"],
-    followersCount: json["followers_count"],
-    followingCount: json["following_count"],
-    postList: List<dynamic>.from(json["post_list"].map((x) => x)),
-    settingInfo: json["setting_info"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -216,10 +133,5 @@ class Data {
     "device_type": deviceType,
     "created_at": createdAt.toIso8601String(),
     "updated_at": updatedAt.toIso8601String(),
-    "my_trainer_count": myTrainerCount,
-    "followers_count": followersCount,
-    "following_count": followingCount,
-    "post_list": List<dynamic>.from(postList.map((x) => x)),
-    "setting_info": settingInfo,
   };
 }
