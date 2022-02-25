@@ -1,0 +1,14 @@
+{
+  "category" : [
+    {
+      "image" : "assets/images/Biryani.png",
+      "title" : "Biryani",
+      "id" : 1
+    },
+    {
+      "image" : "assets/images/Biryani.png",
+      "title" : "Eggs",
+      "id" : 2
+    }
+  ]
+}

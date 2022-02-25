@@ -3,7 +3,6 @@ import 'package:day1/Task2/constants.dart';
 import 'package:day1/Task2/model/login_model.dart';
 import 'package:day1/Task2/pages/BottomNavPages/bottom_bar.dart';
 import 'package:day1/Task2/service/api_service.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:snippet_coder_utils/FormHelper.dart';
@@ -39,11 +38,11 @@ class _LoginPageState extends State<LoginPage> {
     // TODO: implement initState
     super.initState();
     loginRequestModel = LoginRequestModel();
-    FirebaseMessaging.instance.getToken().then((fcmToken) {
+ //   FirebaseMessaging.instance.getToken().then((fcmToken) {
       print("FCM TOKEN :");
-      print(fcmToken);
-      Constants.fcmtoken = fcmToken;
-    });
+   //   print(fcmToken);
+  //   Constants.fcmtoken = fcmToken;
+   // });
   }
 
   @override

@@ -1,16 +1,23 @@
-
 import 'package:day1/App1/CustomWidgets/custom.dart';
 import 'package:day1/App1/Screens/login.dart';
 import 'package:day1/App2/pages/homepage.dart';
 import 'package:day1/Task2/service/authLogin.dart';
+import 'package:day1/blocWithApi/constantsss/str.dart';
+import 'package:day1/blocWithApi/presentation/screenz/popps.dart';
+import 'package:day1/blocpattern/logins.dart';
+import 'package:day1/customButton.dart';
+import 'package:day1/darklightmode/darklight.dart';
 import 'package:day1/drawer.dart';
 import 'package:day1/introduction.dart';
 import 'package:day1/recipeApp/home_recipe.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import 'blocpattern/libs/chap-3/presentation/screens/BlocHome.dart';
+import 'blocpattern/libs/chap-3/logic/cubit/counter_cubit.dart';
 
 // ignore: must_be_immutable, use_key_in_widget_constructors
 class Tranning extends StatefulWidget {
@@ -194,10 +201,8 @@ class _TranningState extends State<Tranning> {
               shadowColor: Colors.black,
               child: InkWell(
                 splashColor: Colors.blue,
-                onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => AuthLogin())),
+                onTap: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AuthLogin())),
                 child: SizedBox(
                   child: "All API"
                       .text
@@ -211,6 +216,39 @@ class _TranningState extends State<Tranning> {
                 ),
               ),
             ),
+            const Divider(),
+            CustomButtonW(
+              text: "bloc pattern",
+              onTap: () => Navigator.push(
+                  context, MaterialPageRoute(builder: (builder) => const Logins())),
+            ),
+            const Divider(),
+            CustomButtonW(
+              text: "Chap-3",
+              onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (builder) => BlocProvider<CounterCubit>(
+                            create: (context) => CounterCubit(),
+                            child: const BlocHome(),
+                          ))),
+            ),
+            const Divider(),
+            CustomButtonW(
+                text: "Bloc API",
+                onTap: () => Navigator.pushNamed(context, BLOC_WITH_API)),
+            const Divider(),
+            CustomButtonW(
+                text: "dark light",
+                onTap: () =>  mainDarkLight(),),
+            const Divider(),
+            CustomButtonW(
+                text: "Popular API",
+                onTap: () => Navigator.pushNamed(context, POPS_LIST_ROUTE)),
+            const Divider(),
+            CustomButtonW(
+                text: "Popps",
+                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => Popps())),),
             const Divider(),
             SizedBox(
                 height: 250,

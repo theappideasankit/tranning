@@ -1,0 +1,37 @@
+{
+  "popular": [
+    {
+      "image": "assets/images/items1.png",
+      "title": "Chicken Sandwich",
+      "subtitle": "indian bbq",
+      "price": "25.00",
+      "id": 1
+    },
+    {
+      "image": "assets/images/items1.png",
+      "title": "Chicken Sandwich",
+      "subtitle": "indian bbq",
+      "price": "25.00",
+      "id": 2
+    },
+    {
+      "image": "assets/images/items1.png",
+      "title": "Chicken Sandwich",
+      "subtitle": "indian bbq",
+      "price": "25.00",
+      "id": 3
+    }
+  ],
+  "category" : [
+    {
+      "image" : "assets/images/items1.png",
+      "title" : "Biryani",
+      "id" : 1
+    },
+    {
+      "image" : "assets/images/items1.png",
+      "title" : "Eggs",
+      "id" : 2
+    }
+  ]
+}

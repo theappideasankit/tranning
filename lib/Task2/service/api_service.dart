@@ -1,13 +1,15 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:day1/Task2/model/view_all_trainer_profile_model.dart';
-import 'package:day1/Task2/model/update_profile_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:day1/Task2/constants.dart';
+import 'package:day1/Task2/model/get_all_post_model.dart';
+import 'package:day1/Task2/model/get_single_post_model.dart';
 import 'package:day1/Task2/model/login_model.dart';
 import 'package:day1/Task2/model/register_model.dart';
+import 'package:day1/Task2/model/update_profile_model.dart';
 import 'package:day1/Task2/model/view_my_profile_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class APIServices {
   static var client = http.Client();
@@ -116,5 +118,29 @@ class APIServices {
     return viewModel;
   }
 
+  Future<GetSinglePost> getSinglePosts(int i) async {
+    var getSinglePost;
+    try {
+      final SharedPreferences prefs = await SharedPreferences.getInstance();
+      Map<String, String> header = {"_token": Constants.token};
+      var map = new Map<String, String>();
+      map["api_token"] = prefs.get("api_token");
+      map["post_id"] = i.toString();
+      var response = await http.post(
+          Uri.parse(Constants.baseUrl + "get-post-info"),
+          headers: header,
+          body: map);
+      if (response.statusCode == 200) {
+        var jsonString = response.body;
+        var jsonMap = json.decode(jsonString);
+        print(" View Single post response ===>" + jsonMap.toString());
+        getSinglePost = GetSinglePost.fromJson(jsonMap);
+      }
+    } catch (e) {
+      print("view post failed" + e);
+      return getSinglePost;
+    }
+    return getSinglePost;
+  }
 
 }
