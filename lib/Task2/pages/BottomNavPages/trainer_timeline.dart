@@ -189,17 +189,18 @@ class _TrainerTimeLineState extends State<TrainerTimeLine> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    CommentPage(index))),
+                                                    CommentPage(
+                                                        index, "trainer"))),
                                         icon: const FaIcon(
                                             FontAwesomeIcons.comment),
                                         iconSize: 25.0,
                                       ),
                                       IconButton(
-                                        onPressed: () => Navigator.push(
+                                        /*  onPressed: () => Navigator.push(
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    CommentPage(index))),
+                                                    CommentPage(index, "trainer"))),*/
                                         icon: const Icon(Icons.send),
                                         iconSize: 25.0,
                                       ),
@@ -264,7 +265,7 @@ class _TrainerTimeLineState extends State<TrainerTimeLine> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  CommentPage(index))),
+                                                  CommentPage(index, "trainer"))),
                                       child: Container(
                                         padding: const EdgeInsets.symmetric(
                                             vertical: 6),

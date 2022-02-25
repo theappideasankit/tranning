@@ -2,6 +2,7 @@ import 'package:day1/Task2/constants.dart';
 import 'package:day1/Task2/model/get_all_post_model.dart';
 import 'package:day1/Task2/model/view_all_profile_model.dart';
 import 'package:day1/Task2/pages/viewProfiles/tabBar.dart';
+import 'package:day1/Task2/pages/view_single_post.dart';
 import 'package:day1/Task2/service/get_FeedApi.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -82,9 +83,10 @@ class _ViewAllProfileState extends State<ViewAllProfile> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => TabBarFollowFollowing(
-                                              snapshot.data.data.id,
-                                              isSelected = 0)));
+                                          builder: (context) =>
+                                              TabBarFollowFollowing(
+                                                  snapshot.data.data.id,
+                                                  isSelected = 0)));
                                 },
                                 child: Column(
                                   children: [
@@ -101,9 +103,10 @@ class _ViewAllProfileState extends State<ViewAllProfile> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => TabBarFollowFollowing(
-                                              snapshot.data.data.id,
-                                              isSelected = 1)));
+                                          builder: (context) =>
+                                              TabBarFollowFollowing(
+                                                  snapshot.data.data.id,
+                                                  isSelected = 1)));
                                 },
                                 child: Column(
                                   children: [
@@ -182,27 +185,45 @@ class _ViewAllProfileState extends State<ViewAllProfile> {
         itemBuilder: (context, gridIndex) {
           return snapshot.data.data.postList[gridIndex].image.toString() ==
                   "null"
-              ? Container(
-                  width: 125.0,
-                  height: 125.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    image: DecorationImage(
-                      image: NetworkImage(Constants.urlImage +
-                          snapshot.data.data.postList[gridIndex].coverPhotos),
-                      fit: BoxFit.fill,
+              ? GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ViewSinglePost(
+                                snapshot.data.data.postList[gridIndex].id)));
+                  },
+                  child: Container(
+                    width: 125.0,
+                    height: 125.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      image: DecorationImage(
+                        image: NetworkImage(Constants.urlImage +
+                            snapshot.data.data.postList[gridIndex].coverPhotos),
+                        fit: BoxFit.fill,
+                      ),
                     ),
                   ),
                 )
-              : Container(
-                  width: 125.0,
-                  height: 125.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    image: DecorationImage(
-                      image: NetworkImage(Constants.urlImage +
-                          snapshot.data.data.postList[gridIndex].image),
-                      fit: BoxFit.fill,
+              : GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ViewSinglePost(
+                                snapshot.data.data.postList[gridIndex].id)));
+                  },
+                  child: Container(
+                    width: 125.0,
+                    height: 125.0,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      image: DecorationImage(
+                        image: NetworkImage(Constants.urlImage +
+                            snapshot.data.data.postList[gridIndex].image),
+                        fit: BoxFit.fill,
+                      ),
                     ),
                   ),
                 );

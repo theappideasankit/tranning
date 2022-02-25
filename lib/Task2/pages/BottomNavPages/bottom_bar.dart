@@ -82,7 +82,7 @@ class _BottomBarState extends State<BottomBar> {
             BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
             BottomNavigationBarItem(
                 icon: Icon(Icons.model_training_outlined), label: ""),
-            BottomNavigationBarItem(icon: Icon(Icons.search), label: ""),
+            BottomNavigationBarItem(icon: Icon(Icons.location_on), label: ""),
             BottomNavigationBarItem(icon: Icon(Icons.message), label: ""),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: ""),
           ],

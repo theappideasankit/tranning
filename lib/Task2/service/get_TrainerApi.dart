@@ -23,7 +23,7 @@ class GetAllTrainerApi {
         var jsonString = response.body;
         var decodeData = json.decode(jsonString);
         print("get all video response");
-        print(decodeData);
+     //   print(decodeData);
         viewPost = GetAllTrainerFeed.fromJson(decodeData);
       }
     } catch (e) {
