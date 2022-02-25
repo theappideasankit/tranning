@@ -249,7 +249,7 @@ class _HomeTimeLineState extends State<HomeTimeLine> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                CommentPage(index))),
+                                                CommentPage(index, "home"))),
                                     icon:
                                         const FaIcon(FontAwesomeIcons.comment),
                                     iconSize: 25.0,
@@ -267,18 +267,22 @@ class _HomeTimeLineState extends State<HomeTimeLine> {
                               HeartAnimationWidget(
                                 alwaysAnimate: true,
                                 isAnimating:
-                                index == index2 ? true : false,
+                                    snapshot.data.data[index].isSaveCount == 1
+                                        ? true
+                                        : false,
                                 child: IconButton(
                                   // ignore: avoid_print
-                                  onPressed: () =>
-                                      controller.savePost(index).then((value) {
+                                  onPressed: () => controller
+                                      .savePost(snapshot.data.data[index].id)
+                                      .then((value) {
                                     controller.getAllPost().then((value) {
                                       setState(() {});
                                     });
                                   }),
-                                  icon: snapshot.data.data[index].isSaveCount == 1
-                                      ? const Icon(Icons.bookmark)
-                                      : const Icon(Icons.bookmark_border),
+                                  icon:
+                                      snapshot.data.data[index].isSaveCount == 1
+                                          ? const Icon(Icons.bookmark)
+                                          : const Icon(Icons.bookmark_border),
                                   iconSize: 25.0,
                                 ),
                               ),
@@ -332,7 +336,7 @@ class _HomeTimeLineState extends State<HomeTimeLine> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              CommentPage(index))),
+                                              CommentPage(index, "home"))),
                                   child: Container(
                                     padding:
                                         const EdgeInsets.symmetric(vertical: 6),

@@ -47,7 +47,6 @@ class IntroductionPage extends StatelessWidget {
             image: _buildImage("assets/images/three.png"),
             decoration: pageDecoration),
       ],
-      color: Colors.blueGrey,
       onDone: () => _onIntroEnd(context),
       onSkip: () => _onIntroEnd(context),
       showSkipButton: true,
